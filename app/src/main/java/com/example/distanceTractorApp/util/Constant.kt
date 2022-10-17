@@ -1,0 +1,21 @@
+package com.example.distanceTractorApp.util
+
+object Constant {
+
+    const val PERMIISION_LOCATION_REQUEST=1
+    const val PERMISSION_BACKGROUND_LOCATION=2
+
+    const val ACTION_SERVICE_START="ACTION_SERVICE_START"
+    const val ACTION_SERVICE_STOP="ACTION_SERVICE_STOP"
+
+    const val NOTOFICATION_CHANNEL_ID="tracker_notification_id"
+    const val NOTIFICATION_CHANNEL_NAME="tracker_notofication"
+    const val NOTIFICATION_ID=3
+
+    const val PENDING_INTENT_REQUESTCODE=5
+    const val ACTION_NAVIGATE_TO_MAPS_FRAGMENT="ACTION_NAVIGATE_TO_MAPS_FRAGMENT"
+
+    const val LOCATION_UPDATE_INTERVAL=4000L
+    const val LOCATION_FASTEST_UPDATE_INTERVAL=2000L
+
+}

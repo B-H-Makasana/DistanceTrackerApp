@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="layout_margin">@dimen/_12sdp</dimen>
+    <dimen name="permission_text_size">@dimen/_26ssp</dimen>
+    <dimen name="image_margin">@dimen/_24sdp</dimen>
+    <dimen name="image_width">@dimen/_250sdp</dimen>
+    <dimen name="timer_text_size">@dimen/_80ssp</dimen>
+    <dimen name="hint_text_size">@dimen/_20ssp</dimen>
+    <dimen name="margin_bottom">@dimen/_16sdp</dimen>
+    <dimen name="result_text">@dimen/_30ssp</dimen>
+    <dimen name="top_corner_dialougr">@dimen/_16sdp</dimen>
+
+
+</resources>
