@@ -63,6 +63,7 @@ class PermissionFragment : Fragment(),EasyPermissions.PermissionCallbacks{
 
    override  fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         findNavController().navigate(R.id.action_permissionFragment_to_mapsFragment)
+//        findNavController().popBackStack(R.id.permissionFragment, false)
     }
 
 
@@ -71,6 +72,8 @@ override fun onDestroyView() {
         _binding=null
         super.onDestroyView()
     }
+
+
 
 
 }

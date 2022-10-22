@@ -12,6 +12,8 @@
         tools:layout="@layout/fragment_permission" >
         <action
             android:id="@+id/action_permissionFragment_to_mapsFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/permissionFragment"
             app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
@@ -21,7 +23,7 @@
         <action
             android:id="@+id/action_mapsFragment_to_resultFragment"
             app:destination="@id/resultFragment"
-            app:popUpToInclusive="false" />
+            />
     </fragment>
     <dialog
         android:id="@+id/resultFragment"
@@ -30,6 +32,8 @@
         tools:layout="@layout/fragment_result" >
         <action
             android:id="@+id/action_resultFragment_to_mapsFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/mapsFragment" />
         <argument
             android:name="result"

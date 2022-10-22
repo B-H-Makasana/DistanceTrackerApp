@@ -53,4 +53,11 @@ class ResultFragment : BottomSheetDialogFragment() {
         startActivity(shareIntent)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
 }
+

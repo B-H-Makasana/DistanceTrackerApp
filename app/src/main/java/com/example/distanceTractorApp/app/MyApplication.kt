@@ -1,4 +1,4 @@
-package com.example.distanceTractorApp
+package com.example.distanceTractorApp.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

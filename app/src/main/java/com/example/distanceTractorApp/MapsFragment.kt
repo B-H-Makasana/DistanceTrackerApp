@@ -64,6 +64,14 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
+         fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(requireActivity())
+         return binding.root
+
+
+
+    }
+
+    override fun onStart() {
         binding.startButton.setOnClickListener {
             onStartButtonClicked()
         }
@@ -73,12 +81,14 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
         binding.resetButton.setOnClickListener {
             onResetButtionClicked()
         }
-        fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(requireActivity())
-        return binding.root
 
-
-
+        super.onStart()
     }
+
+//    override fun onResume() {
+//        binding.hintText.hide();
+//        super.onResume()
+//    }
 
     @SuppressLint("MissingPermission")
     private fun onResetButtionClicked() {
@@ -90,6 +100,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
             map.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition(lastKnowenLocation)))
             locationList.clear()
             binding.resetButton.hide()
+            binding.startButton.enable()
             binding.startButton.show()
 
         }
@@ -99,8 +110,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
     private fun onStopButtonClicked() {
         stopForegroundSerive()
-        binding.stopButton.hide()
-        binding.startButton.enable()
+        binding.startButton.show()
 
     }
 
@@ -194,7 +204,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
     }
 
     private fun drawPollyLine(){
-        map.addPolyline(PolylineOptions().apply {
+    val polyline=    map.addPolyline(PolylineOptions().apply {
             width(10f)
             color(android.graphics.Color.BLUE)
             jointType(JointType.ROUND)
@@ -205,6 +215,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
 
         })
+        polylineList.add(polyline)
     }
 
     private fun stopForegroundSerive(){
@@ -232,7 +243,6 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
         binding.hintText.animate().alpha(0f).duration = 1500
         lifecycleScope.launch {
             delay(2500)
-            binding.hintText.hide()
             binding.startButton.show()
 
         }
@@ -242,8 +252,8 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
 
     private fun startCountdown() {
-      binding.textTimer.show()
-      binding.stopButton.disable()
+        binding.textTimer.show()
+        binding.stopButton.disable()
       val timer:CountDownTimer=object :CountDownTimer(4000,1000){
           override fun onTick(millisUntilFinished: Long) {
               binding.textTimer.show()
@@ -271,10 +281,12 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
     private fun showBiggerPicture(){
         val bound= LatLngBounds.Builder()
-        for(location in locationList){
-            bound.include(location)
+        if(locationList.size!=0) {
+            for (location in locationList) {
+                bound.include(location)
+            }
+            map.animateCamera(CameraUpdateFactory.newLatLngBounds(bound.build(), 500), 1000, null)
         }
-        map.animateCamera(CameraUpdateFactory.newLatLngBounds(bound.build(),500),1000,null)
     }
 
     private fun displayReult() {
@@ -319,10 +331,18 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 //        val manager: FragmentManager = requireActivity().supportFragmentManager
 //        val trans: FragmentTransaction = manager.beginTransaction()
 //        trans.remove(PermissionFragment())
-        findNavController().popBackStack(R.id.permissionFragment, true)
+//        findNavController().popBackStack(R.id.permissionFragment, true)
 
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+
 
 
 
