@@ -20,9 +20,7 @@ import com.example.distanceTractorApp.util.Constant.NOTIFICATION_ID
 import com.example.distanceTractorApp.util.MapUtil
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.channelFlow
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,7 +36,7 @@ class TrackerService:LifecycleService() {
     companion object{
         val started=MutableLiveData<Boolean>()
 
-        var locationList=MutableLiveData<MutableList<LatLng>>();
+        var locationList=MutableLiveData<MutableList<LatLng>>()
 
         var startTime=MutableLiveData<Long>()
         var stopTime=MutableLiveData<Long>()
@@ -107,7 +105,7 @@ class TrackerService:LifecycleService() {
     private val locationCallback=object :LocationCallback(){
         override fun onLocationResult(result: LocationResult) {
             super.onLocationResult(result)
-            result?.locations?.let{
+            result.locations.let{
                 locations->
                 for(location in locations){
 //                    val newlatlong=LatLng(location.latitude,location.longitude)

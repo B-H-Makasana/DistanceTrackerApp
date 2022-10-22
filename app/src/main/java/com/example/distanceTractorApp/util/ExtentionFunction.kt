@@ -1,6 +1,5 @@
 package com.example.distanceTractorApp.util
 
-import android.text.Spannable
 import android.view.View
 import android.widget.Button
 

@@ -11,8 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -62,7 +60,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMapsBinding.inflate(inflater, container, false)
          fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(requireActivity())
          return binding.root
@@ -260,7 +258,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
               binding.stopButton.disable()
               val currentSecond=millisUntilFinished/1000
               if(currentSecond.toString()=="0"){
-                  binding.textTimer.text="G0"
+                  binding.textTimer.text=getString(R.string.go)
                   binding.textTimer.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
               }
               else{
@@ -302,10 +300,7 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
 
         }
-//        binding.startButton.apply {
-//            hide()
-//            enable()
-//        }
+
         binding.stopButton.hide()
     }
 
@@ -314,7 +309,6 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
@@ -328,10 +322,6 @@ class MapsFragment : Fragment(),OnMapReadyCallback,GoogleMap.OnMyLocationButtonC
 
     override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         onStartButtonClicked()
-//        val manager: FragmentManager = requireActivity().supportFragmentManager
-//        val trans: FragmentTransaction = manager.beginTransaction()
-//        trans.remove(PermissionFragment())
-//        findNavController().popBackStack(R.id.permissionFragment, true)
 
 
     }

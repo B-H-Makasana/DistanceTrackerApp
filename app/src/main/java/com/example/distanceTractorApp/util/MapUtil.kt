@@ -1,6 +1,5 @@
 package com.example.distanceTractorApp.util
 
-import android.icu.text.DecimalFormat
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil

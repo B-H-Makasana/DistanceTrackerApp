@@ -1,18 +1,13 @@
 package com.example.distanceTractorApp
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.distanceTractorApp.databinding.FragmentPermissionBinding
-import com.example.distanceTractorApp.util.Constant
 import com.example.distanceTractorApp.util.Permission
 import com.example.distanceTractorApp.util.Permission.requestLocationPermission
 import com.vmadalin.easypermissions.EasyPermissions
@@ -27,7 +22,7 @@ class PermissionFragment : Fragment(),EasyPermissions.PermissionCallbacks{
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding=FragmentPermissionBinding.inflate(inflater,container,false)
 
@@ -63,7 +58,6 @@ class PermissionFragment : Fragment(),EasyPermissions.PermissionCallbacks{
 
    override  fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
         findNavController().navigate(R.id.action_permissionFragment_to_mapsFragment)
-//        findNavController().popBackStack(R.id.permissionFragment, false)
     }
 
 

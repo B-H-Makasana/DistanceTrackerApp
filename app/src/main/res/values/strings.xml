@@ -13,6 +13,7 @@
     <string name="time_text">Time</string>
     <string name="share_button">Share</string>
     <string name="result">%1$s km</string>
+    <string name="go">G0</string>
 
 
 </resources>
